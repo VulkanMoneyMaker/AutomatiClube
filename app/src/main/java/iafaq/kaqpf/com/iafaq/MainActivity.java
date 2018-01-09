@@ -28,15 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SmartLocation.with(this).location()
-                .oneFix()
-                .start(new OnLocationUpdatedListener() {
-                    @Override
-                    public void onLocationUpdated(Location location) {
-
-                        System.out.println();
-                    }
-                });
         if (getCountry() && isOnline()) {
             webView = findViewById(R.id.web_view);
             webView.setWebViewClient(new WebViewClient() {
